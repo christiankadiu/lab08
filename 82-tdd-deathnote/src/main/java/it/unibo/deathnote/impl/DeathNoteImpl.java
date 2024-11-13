@@ -1,13 +1,24 @@
 package it.unibo.deathnote.impl;
 
+import java.util.NoSuchElementException;
+
 import it.unibo.deathnote.api.DeathNote;
 
 public class DeathNoteImpl implements DeathNote {
 
     @Override
     public String getRule(int ruleNumber) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getRule'");
+        if (ruleNumber <= 0 || ruleNumber > RULES.size()) {
+            throw new IllegalArgumentException("input sbagliato");
+        }
+        int i = 1;
+        for (String string : RULES) {
+            if (i == ruleNumber) {
+                return string;
+            }
+            i++;
+        }
+        throw new NoSuchElementException();
     }
 
     @Override
