@@ -42,3 +42,20 @@ Use the *Test-Driven Development (TDD)* methodology to develop the following.
 **Important notes**:
 * the current time measured as seconds since the Unix epoch is available as `System.currentTimeMillis()`.
 * the execution of a program can be paused for a given number of milliseconds using `Thread.sleep(long millis)`.
+
+
+
+try{
+            deathNote.writeDeathCause(causa);
+            deathNote.writeName(nome);
+        }catch(IllegalArgumentException e){
+            assertNotNull(e.getMessage());
+            assertFalse(e.getMessage().isBlank());
+            assertFalse(e.getMessage().isEmpty());
+            System.out.println("non puoi mettere la causa prima del nome");
+        }
+        deathNote.writeDeathCause(nome);
+        assertEquals("heart attack", deathNote.getDeathCause(nome));
+        deathNote.writeName(nome2);
+        assertTrue(deathNote.writeDeathCause("karting accident"));
+        assertEquals("karting accident", deathNote.getDeathCause(nome));

@@ -1,10 +1,22 @@
 package it.unibo.deathnote.impl;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.NoSuchElementException;
+import java.util.Objects;
+import it.unibo.deathnote.impl.*;
 
 import it.unibo.deathnote.api.DeathNote;
 
 public class DeathNoteImpl implements DeathNote {
+
+    private String lastName;
+    Map<String, persona> mappa;
+    long current;
+
+    public DeathNoteImpl() {
+        mappa = new HashMap<>();
+    }
 
     @Override
     public String getRule(int ruleNumber) {
@@ -23,38 +35,77 @@ public class DeathNoteImpl implements DeathNote {
 
     @Override
     public void writeName(String name) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'writeName'");
+        Objects.requireNonNull(name);
+        this.lastName = name;
+        mappa.put(name, new persona());
+        current = System.currentTimeMillis();
     }
 
     @Override
     public boolean writeDeathCause(String cause) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'writeDeathCause'");
+        if (cause == null || mappa.isEmpty()) {
+            throw new IllegalStateException();
+        }
+        mappa.get(lastName).deathCause = cause;
+        long t2 = System.currentTimeMillis();
+        current = t2 - current;
+        if (current <= 40) {
+            return true;
+        }
+        return false;
     }
 
     @Override
     public boolean writeDetails(String details) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'writeDetails'");
+        if (details == null || mappa.isEmpty()) {
+            throw new IllegalStateException();
+        }
+        mappa.get(lastName).deathDetails = details;
+        long t2 = System.currentTimeMillis();
+        if (t2 - current <= 6040) {
+            return true;
+        }
+        return false;
     }
 
     @Override
     public String getDeathCause(String name) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getDeathCause'");
+        if (!mappa.containsKey(name)) {
+            throw new IllegalArgumentException("non c'è questo nome");
+        }
+        if (isSpecified(mappa.get(name).deathCause)) {
+            return mappa.get(name).deathCause;
+        } else {
+            return "heart attack";
+        }
     }
 
     @Override
     public String getDeathDetails(String name) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getDeathDetails'");
+        if (!mappa.containsKey(name)) {
+            throw new IllegalArgumentException("non c'è questo nome");
+        }
+        if (isSpecified(mappa.get(name).deathDetails)) {
+            return mappa.get(name).deathDetails;
+        } else {
+            return "";
+        }
     }
 
     @Override
     public boolean isNameWritten(String name) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'isNameWritten'");
+        for (String s : mappa.keySet()) {
+            if (s.equals(name)) {
+                return true;
+            }
+        }
+        return false;
     }
 
+    public boolean isSpecified(String s) {
+        if (s != null && !s.isEmpty()) {
+            return true;
+        }
+        return false;
+    }
 }
