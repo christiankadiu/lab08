@@ -94,12 +94,7 @@ public class DeathNoteImpl implements DeathNote {
 
     @Override
     public boolean isNameWritten(String name) {
-        for (String s : mappa.keySet()) {
-            if (s.equals(name)) {
-                return true;
-            }
-        }
-        return false;
+        return mappa.containsKey(name);
     }
 
     public boolean isSpecified(String s) {

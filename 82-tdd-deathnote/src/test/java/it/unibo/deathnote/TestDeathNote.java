@@ -79,14 +79,13 @@ class TestDeathNote {
         assertEquals(causa, deathNote.getDeathCause(nome));
         deathNote.writeName(nome2);
         assertTrue(deathNote.writeDeathCause(causa2));
+        assertEquals(causa, deathNote.getDeathCause(nome));
         try {
             Thread.sleep(100);
         } catch (InterruptedException e) {
-            assertNotNull(e.getMessage());
-            assertFalse(e.getMessage().isBlank());
-            assertFalse(e.getMessage().isEmpty());
         }
         assertFalse(deathNote.writeDeathCause(causa));
+        assertEquals(causa, deathNote.getDeathCause(nome));
     }
 
     @Test
@@ -104,9 +103,6 @@ class TestDeathNote {
         try {
             Thread.sleep(6100);
         } catch (InterruptedException e) {
-            assertNotNull(e.getMessage());
-            assertFalse(e.getMessage().isBlank());
-            assertFalse(e.getMessage().isEmpty());
         }
         assertFalse(deathNote.writeDetails("nuovi dettagli"));
     }

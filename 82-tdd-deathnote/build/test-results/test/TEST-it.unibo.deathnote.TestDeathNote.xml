@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="it.unibo.deathnote.TestDeathNote" tests="5" skipped="0" failures="0" errors="0" timestamp="2024-11-15T01:10:09" hostname="MacBook-Air-di-christian.local" time="6.246">
+<testsuite name="it.unibo.deathnote.TestDeathNote" tests="5" skipped="0" failures="0" errors="0" timestamp="2024-11-18T04:13:12" hostname="MacBook-Air-di-christian.local" time="6.239">
   <properties/>
-  <testcase name="NoNullOrEmptyRule()" classname="it.unibo.deathnote.TestDeathNote" time="0.013"/>
-  <testcase name="testFive()" classname="it.unibo.deathnote.TestDeathNote" time="6.116"/>
-  <testcase name="testFour()" classname="it.unibo.deathnote.TestDeathNote" time="0.108"/>
+  <testcase name="NoNullOrEmptyRule()" classname="it.unibo.deathnote.TestDeathNote" time="0.014"/>
+  <testcase name="testFive()" classname="it.unibo.deathnote.TestDeathNote" time="6.112"/>
+  <testcase name="testFour()" classname="it.unibo.deathnote.TestDeathNote" time="0.104"/>
   <testcase name="TestDie()" classname="it.unibo.deathnote.TestDeathNote" time="0.002"/>
   <testcase name="Number0AndNegativeRulesDoNotExist()" classname="it.unibo.deathnote.TestDeathNote" time="0.002"/>
   <system-out><![CDATA[]]></system-out>
